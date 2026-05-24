@@ -1,1 +1,1 @@
-Basic rust fetch for nix.
+simple fetch!

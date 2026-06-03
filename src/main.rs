@@ -1,14 +1,21 @@
+mod config;
 mod display;
 mod system;
 
 fn main() {
-    let mode = std::env::args().nth(1).unwrap_or_default();
-    let mode = match mode.as_str() {
+    let cfg = config::load();
+    let arg = std::env::args().nth(1).unwrap_or_default();
+    let mode = match arg.as_str() {
         "--gif"   => display::Mode::Gif,
         "--png"   => display::Mode::Png,
         "--ascii" => display::Mode::Ascii,
-        _         => display::Mode::Ascii,
+        "--text"  => display::Mode::Text,
+        _ => match cfg.display.mode.as_str() {
+            "gif"  => display::Mode::Gif,
+            "png"  => display::Mode::Png,
+            "text" => display::Mode::Text,
+            _      => display::Mode::Ascii,
+        },
     };
-    let info = system::collect();
-    display::render(info, mode);
+    display::render(system::collect(), mode, &cfg);
 }

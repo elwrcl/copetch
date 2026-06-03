@@ -1,6 +1,3 @@
-<<<<<<< Updated upstream
-simple fetch!
-=======
 Basic rust fetch for nix.
 
 ## Config

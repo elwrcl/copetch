@@ -99,5 +99,3 @@ type = "custom"
 label = "ip"
 command = "hostname -I | awk '{print $1}'"
 ```
-
-> > > > > > > Stashed changes
